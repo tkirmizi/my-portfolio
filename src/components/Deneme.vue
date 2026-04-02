@@ -1,3 +1,31 @@
+<script setup>
+import ProjectCard from './ProjectCard.vue';
+import cardTop from '../assets/card-top.jpg'
+import irc from "../assets/irc.jpg"
+import minishell from "../assets/minishell.png"
+import trans from "../assets/trans.png"
+
+const projects = [
+  {
+    title: 'ft_transcendence',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    image: trans
+  },
+  {
+    title: 'ft_irc',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+
+    image: irc
+  },
+  {
+    title: 'Minishell',
+    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+
+    image: minishell
+  }
+]
+</script>
+
 <template>
   <div class="min-h-screen flex flex-col bg-ink text-white">
     <div class="pointer-events-none fixed inset-0 -z-10 bg-mesh"></div>
@@ -29,7 +57,7 @@
             </a>
             <a href="#projects"
               class="rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold hover:bg-white/10">
-              My projects
+              My Github
             </a>
           </div>
         </div>
@@ -78,32 +106,9 @@
 
       <!-- Projects -->
       <section id="projects" class="max-w-6xl mx-auto px-6 py-16">
-        <h2 class="text-2xl md:text-3xl font-semibold">Projects that I’m proud of</h2>
+        <h2 class="text-2xl md:text-3xl font-semibold">Projects that I am proud of</h2>
         <div class="mt-8 grid md:grid-cols-3 gap-5">
-          <article class="card p-5">ft_transcendence (clickable later)</article>
-          <article class="card p-5">ft_irc</article>
-          <article class="card p-5">minishell</article>
-        </div>
-      </section>
-
-      <section class="max-w-6xl mx-auto px-16 py-16">
-        <div class="max-w-sm rounded overflow-hidden shadow-lg">
-          <img class="w-full" src="../assets/card-top.jpg" alt="Sunset in the mountains">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-            <p class="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
-          </div>
-          <div class="px-6 pt-4 pb-2">
-            <span
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-            <span
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-            <span
-              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-          </div>
+          <ProjectCard v-for="project in projects" :key="project.title" v-bind="project" />
         </div>
       </section>
 
