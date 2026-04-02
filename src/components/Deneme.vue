@@ -1,29 +1,62 @@
 <script setup>
 import ProjectCard from './ProjectCard.vue';
-import cardTop from '../assets/card-top.jpg'
 import irc from "../assets/irc.jpg"
 import minishell from "../assets/minishell.png"
 import trans from "../assets/trans.png"
 
 const projects = [
   {
-    title: 'ft_transcendence',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-    image: trans
+    title: 'Transcendence',
+    description: 'A fullstack web applicaton like twitter or facebook vica versa. Features are excatly same like. We built with modern web technologies, including frontend UI, backend APIs, authentiction, database integration with providing also real time communication with web sockets.',
+    image: trans,
+    href: 'https://github.com/agdemirayhan/ft_transcendence'
   },
   {
-    title: 'ft_irc',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-
-    image: irc
+    title: 'Irc',
+    description: 'A custom IRC server built in C++ implementing real-time communication over TCP sockets. Supports multiple clients, channels, authentication, and core IRC commands such as messaging and nickname management. Focused on low-level networking concepts like non-blocking I/O and all architecture.',
+    image: irc,
+    href: 'https://github.com/tkirmizi/ft_irc'
   },
   {
     title: 'Minishell',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+    description: 'A fully functional Unix-like shell written in C, inspired by bash behavior. Implements command parsing, piping, redirections, environment variables, and process management, system calls, process control, and terminal interactions.',
 
-    image: minishell
+    image: minishell,
+    href: 'https://github.com/tkirmizi/Unix-shell'
   }
 ]
+
+function handleTechCardMove(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  const rect = element.getBoundingClientRect()
+  const offsetX = event.clientX - rect.left
+  const offsetY = event.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  const rotateY = ((offsetX - centerX) / centerX) * 8
+  const rotateX = ((centerY - offsetY) / centerY) * 8
+  const translateX = ((offsetX - centerX) / centerX) * 4
+  const translateY = ((offsetY - centerY) / centerY) * 4
+
+  element.style.setProperty('--tech-rotate-x', `${rotateX.toFixed(2)}deg`)
+  element.style.setProperty('--tech-rotate-y', `${rotateY.toFixed(2)}deg`)
+  element.style.setProperty('--tech-shift-x', `${translateX.toFixed(2)}px`)
+  element.style.setProperty('--tech-shift-y', `${translateY.toFixed(2)}px`)
+}
+
+function resetTechCard(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  element.style.setProperty('--tech-rotate-x', '0deg')
+  element.style.setProperty('--tech-rotate-y', '0deg')
+  element.style.setProperty('--tech-shift-x', '0px')
+  element.style.setProperty('--tech-shift-y', '0px')
+}
 </script>
 
 <template>
@@ -33,7 +66,7 @@ const projects = [
     <!-- Navbar -->
     <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur">
       <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" class="text-lg font-semibold tracking-tight">taha kirmizioglu</a>
+        <a href="#" class="text-lg font-semibold tracking-tight">Taha Kirmizioglu</a>
         <ul class="flex items-center gap-6 text-sm text-white/80">
           <li><a href="#projects" class="hover:text-white">Projects</a></li>
           <li><a href="#about" class="hover:text-white">About Me</a></li>
@@ -62,45 +95,74 @@ const projects = [
           </div>
         </div>
 
-        <div class="flex flex-col gap-4">
-          <div class="card flex-1 p-6">
+        <div class="card p-6">
+          <p class="text-xs uppercase tracking-[0.2em] text-white/50">About</p>
+
+          <p class="mt-3 max-w-md text-sm leading-7 text-white/80">
             Junior Software Developer trained at 42 Heilbronn with professional experience at Schwarz IT.
-          </div>
-          <div class="card flex-1 p-6">
+          </p>
+
+          <div class="my-6 h-px bg-white/10"></div>
+
+          <div>
             <h3 class="text-sm font-semibold text-white/90">Tech Stack</h3>
+
             <div class="mt-5 grid grid-cols-3 gap-3 sm:grid-cols-6">
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/go/00ADD8" alt="Go" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/go/00ADD8" alt="Go" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Go</span>
               </div>
 
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/vuedotjs/42b883" alt="Vue.js" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/vuedotjs/42b883" alt="Vue.js" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Vue</span>
               </div>
 
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Docker</span>
               </div>
 
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">SQL</span>
               </div>
 
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Git</span>
               </div>
 
-              <div class="rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2">
-                <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="CI/CD" class="h-7 w-7" />
+              <div
+                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove"
+                @pointerleave="resetTechCard"
+              >
+                <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="CI/CD" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">CI/CD</span>
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
