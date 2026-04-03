@@ -3,6 +3,26 @@ import ProjectCard from './ProjectCard.vue';
 import irc from "../assets/irc.jpg"
 import minishell from "../assets/minishell.png"
 import trans from "../assets/trans.png"
+import About from './About.vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const isAboutOpen = ref(false)
+
+function openAbout() {
+  isAboutOpen.value = true
+}
+
+function closeAbout() {
+  isAboutOpen.value = false
+}
+
+function onKeyDown(event) {
+  if (event.key === 'Escape')
+    closeAbout()
+}
+
+onMounted(() => window.addEventListener('keydown', onKeyDown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeyDown))
 
 const projects = [
   {
@@ -70,7 +90,12 @@ function resetTechCard(event) {
         <ul class="flex items-center gap-6 text-sm text-white/80">
           <li><a href="#projects" class="hover:text-white">Projects</a></li>
           <li><a href="#about" class="hover:text-white">About Me</a></li>
-          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+          <li>
+            <button type="button" class="hover:text-white" @click="openAbout">
+              Contact
+            </button>
+          </li>
+
         </ul>
       </nav>
     </header>
@@ -108,57 +133,41 @@ function resetTechCard(event) {
             <h3 class="text-sm font-semibold text-white/90">Tech Stack</h3>
 
             <div class="mt-5 grid grid-cols-3 gap-3 sm:grid-cols-6">
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
                 <img src="https://cdn.simpleicons.org/go/00ADD8" alt="Go" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Go</span>
               </div>
 
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
                 <img src="https://cdn.simpleicons.org/vuedotjs/42b883" alt="Vue.js" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Vue</span>
               </div>
 
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
                 <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Docker</span>
               </div>
 
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
-                <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" class="tech-card-icon h-7 w-7" />
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
+                <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL"
+                  class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">SQL</span>
               </div>
 
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
                 <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">Git</span>
               </div>
 
-              <div
-                class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
-                @pointermove="handleTechCardMove"
-                @pointerleave="resetTechCard"
-              >
-                <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="CI/CD" class="tech-card-icon h-7 w-7" />
+              <div class="tech-card rounded-xl border border-white/10 bg-white/5 p-3 flex flex-col items-center gap-2"
+                @pointermove="handleTechCardMove" @pointerleave="resetTechCard">
+                <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="CI/CD"
+                  class="tech-card-icon h-7 w-7" />
                 <span class="text-xs text-white/80">CI/CD</span>
               </div>
             </div>
@@ -173,6 +182,13 @@ function resetTechCard(event) {
           <ProjectCard v-for="project in projects" :key="project.title" v-bind="project" />
         </div>
       </section>
+
+<div v-if="isAboutOpen" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 px-4" @click="closeAbout">
+  <div class="relative w-auto max-w-lg" @click.stop>
+    <button class="absolute -top-3 -right-3 ...">✕</button>
+    <About />
+  </div>
+</div>
 
     </main>
 
