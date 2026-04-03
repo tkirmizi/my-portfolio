@@ -77,6 +77,32 @@ function resetTechCard(event) {
   element.style.setProperty('--tech-shift-x', '0px')
   element.style.setProperty('--tech-shift-y', '0px')
 }
+
+function handleContactCardMove(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  const rect = element.getBoundingClientRect()
+  const offsetX = event.clientX - rect.left
+  const offsetY = event.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  const rotateY = ((offsetX - centerX) / centerX) * 6
+  const rotateX = ((centerY - offsetY) / centerY) * 6
+
+  element.style.setProperty('--contact-rotate-x', `${rotateX.toFixed(2)}deg`)
+  element.style.setProperty('--contact-rotate-y', `${rotateY.toFixed(2)}deg`)
+}
+
+function resetContactCard(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  element.style.setProperty('--contact-rotate-x', '0deg')
+  element.style.setProperty('--contact-rotate-y', '0deg')
+}
 </script>
 
 <template>
@@ -91,7 +117,7 @@ function resetTechCard(event) {
           <li><a href="#projects" class="hover:text-white">Projects</a></li>
           <li><a href="#about" class="hover:text-white">About Me</a></li>
           <li>
-            <button type="button" class="hover:text-white" @click="openAbout">
+            <button type="button" class="hover:bg-cyan-200 bg-cyan-300 text-sm rounded-xl p-1 text-slate-900 font-semibold" @click="openAbout">
               Contact
             </button>
           </li>
@@ -109,11 +135,12 @@ function resetTechCard(event) {
             <span class="block text-cyan-300">I’m a fullstack software developer.</span>
           </h1>
           <div class="mt-6 flex gap-3">
-            <a href="#contact"
+            <a href="mailto:t.kirmizioglu@outlook.com"
               class="rounded-xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-cyan-200">
               Email me
             </a>
-            <a href="#projects"
+            <a href="https://github.com/tkirmizi"
+            target="_blank"
               class="rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold hover:bg-white/10">
               My Github
             </a>
@@ -183,16 +210,21 @@ function resetTechCard(event) {
         </div>
       </section>
 
-      <Transition name="modal">
+      <Transition name="contact-modal" appear>
         <div
           v-if="isAboutOpen"
-          class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4"
+          class="contact-modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 backdrop-blur-[2px]"
           @click="closeAbout"
         >
-          <div class="relative w-full max-w-md" @click.stop>
+          <div
+            class="contact-modal-panel relative w-full max-w-md"
+            @click.stop
+            @pointermove="handleContactCardMove"
+            @pointerleave="resetContactCard"
+          >
             <button
               type="button"
-              class="absolute -right-2 -top-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition hover:bg-red-600"
+              class="absolute -right-2 -top-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition"
               aria-label="Close"
               @click="closeAbout"
             >
@@ -220,23 +252,39 @@ function resetTechCard(event) {
 </template>
 
 <style scoped>
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.2s ease;
+.contact-modal-enter-active,
+.contact-modal-leave-active {
+  transition: opacity 260ms ease;
 }
 
-.modal-enter-active > div,
-.modal-leave-active > div {
-  transition: transform 0.2s ease;
+.contact-modal-enter-active .contact-modal-panel,
+.contact-modal-leave-active .contact-modal-panel {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
 }
 
-.modal-enter-from,
-.modal-leave-to {
+.contact-modal-panel {
+  transform:
+    perspective(1100px)
+    rotateX(var(--contact-rotate-x, 0deg))
+    rotateY(var(--contact-rotate-y, 0deg));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.contact-modal-enter-from,
+.contact-modal-leave-to {
   opacity: 0;
 }
 
-.modal-enter-from > div,
-.modal-leave-to > div {
-  transform: translateY(8px) scale(0.98);
+.contact-modal-enter-from .contact-modal-panel,
+.contact-modal-leave-to .contact-modal-panel {
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+}
+
+.contact-modal-enter-to .contact-modal-panel,
+.contact-modal-leave-from .contact-modal-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 </style>

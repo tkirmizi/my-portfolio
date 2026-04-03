@@ -19,19 +19,20 @@
         href="https://github.com/tkirmizi"
         target="_blank"
         rel="noreferrer"
-        class="rounded-full bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition hover:bg-cyan-200"
+        class="rounded-full bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition"
       >
         GitHub
       </a>
       <a
         href="https://www.linkedin.com/in/taha-k%C4%B1rm%C4%B1z%C4%B1o%C4%9Flu-31429215a/"
-        class="rounded-full border  bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition hover:bg-white/10"
+        target="_blank"
+        class="rounded-full border bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition"
       >
         Linkedin
       </a>
             <a
         href="mailto:t.kirmizioglu@outlook.com"
-        class="rounded-full border  bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition hover:bg-white/10"
+        class="rounded-full border bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition"
       >
         Email
       </a>
