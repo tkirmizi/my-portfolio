@@ -183,12 +183,25 @@ function resetTechCard(event) {
         </div>
       </section>
 
-<div v-if="isAboutOpen" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 px-4" @click="closeAbout">
-  <div class="relative w-auto max-w-lg" @click.stop>
-    <button class="absolute -top-3 -right-3 ...">✕</button>
-    <About />
-  </div>
-</div>
+      <Transition name="modal">
+        <div
+          v-if="isAboutOpen"
+          class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4"
+          @click="closeAbout"
+        >
+          <div class="relative w-full max-w-md" @click.stop>
+            <button
+              type="button"
+              class="absolute -right-2 -top-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition hover:bg-red-600"
+              aria-label="Close"
+              @click="closeAbout"
+            >
+              ×
+            </button>
+            <About />
+          </div>
+        </div>
+      </Transition>
 
     </main>
 
@@ -205,3 +218,25 @@ function resetTechCard(event) {
     </footer>
   </div>
 </template>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-enter-active > div,
+.modal-leave-active > div {
+  transition: transform 0.2s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from > div,
+.modal-leave-to > div {
+  transform: translateY(8px) scale(0.98);
+}
+</style>
