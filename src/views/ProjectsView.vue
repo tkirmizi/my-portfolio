@@ -1,5 +1,62 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import ContactCard from '../components/Contact.vue'
 import { projects } from '../data/projects'
+
+const isContactOpen = ref(false)
+const isResumeOpen = ref(false)
+
+function openContact() {
+  isContactOpen.value = true
+}
+
+function closeContact() {
+  isContactOpen.value = false
+}
+
+function openResume() {
+  isResumeOpen.value = true
+}
+
+function closeResume() {
+  isResumeOpen.value = false
+}
+
+function onKeyDown(event) {
+  if (event.key === 'Escape') {
+    closeContact()
+    closeResume()
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', onKeyDown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeyDown))
+
+function handleProjectMove(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  const rect = element.getBoundingClientRect()
+  const offsetX = event.clientX - rect.left
+  const offsetY = event.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  const rotateY = ((offsetX - centerX) / centerX) * 4
+  const rotateX = ((centerY - offsetY) / centerY) * 4
+
+  element.style.setProperty('--tile-rotate-x', `${rotateX.toFixed(2)}deg`)
+  element.style.setProperty('--tile-rotate-y', `${rotateY.toFixed(2)}deg`)
+}
+
+function resetProjectTile(event) {
+  const element = event.currentTarget
+
+  if (!element) return
+
+  element.style.setProperty('--tile-rotate-x', '0deg')
+  element.style.setProperty('--tile-rotate-y', '0deg')
+}
 
 function projectInitials(title) {
   return title
@@ -23,24 +80,30 @@ function projectInitials(title) {
             <RouterLink to="/projects" class="cursor-pointer transition hover:text-white">Projects</RouterLink>
           </li>
           <li>
-            <a href="#" class="cursor-pointer transition hover:text-white">Cv</a>
+            <button type="button" class="cursor-pointer transition hover:text-white" @click="openResume">Cv</button>
           </li>
           <li>
-            <a
-              href="#"
+            <button
+              type="button"
               class="cursor-pointer rounded-xl bg-cyan-300 p-1 text-sm font-semibold text-slate-900 transition hover:bg-cyan-200"
+              @click="openContact"
             >
               Contact
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
     </header>
 
     <main class="flex-1 max-w-6xl mx-auto w-full px-6 py-16">
-      <h1 class="mb-8 text-3xl font-bold tracking-tight text-cyan-300 md:text-4xl">
-        Projects
-      </h1>
+      <div class="mb-8 flex items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <p class="text-xs uppercase tracking-[0.22em] text-white/55">Project Archive</p>
+          <h1 class="mt-2 text-3xl font-bold tracking-tight text-cyan-300 md:text-4xl">Projects</h1>
+        </div>
+        <p class="text-sm text-white/60">{{ projects.length }} repositories</p>
+      </div>
+
       <section class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         <a
           v-for="project in projects"
@@ -49,6 +112,8 @@ function projectInitials(title) {
           target="_blank"
           rel="noreferrer"
           class="project-tile group overflow-hidden rounded-3xl border border-white/12 bg-white/[0.03]"
+          @pointermove="handleProjectMove"
+          @pointerleave="resetProjectTile"
         >
           <div class="relative h-44 overflow-hidden border-b border-white/10">
             <img
@@ -107,24 +172,138 @@ function projectInitials(title) {
       <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
         <p class="text-sm text-white/60">© 2026 Taha</p>
         <div class="flex gap-5 text-sm text-white/80">
-          <a href="#" class="hover:text-white">GitHub</a>
-          <a href="#" class="hover:text-white">LinkedIn</a>
-          <a href="#" class="hover:text-white">Mail</a>
+          <a href="https://github.com/tkirmizi" target="_blank" rel="noreferrer" class="hover:text-white">GitHub</a>
+          <a href="https://www.linkedin.com/in/taha-k%C4%B1rm%C4%B1z%C4%B1o%C4%9Flu-31429215a/" target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn</a>
+          <a href="mailto:t.kirmizioglu@outlook.com" class="hover:text-white">Mail</a>
         </div>
       </div>
     </footer>
+
+    <Transition name="contact-modal" appear>
+      <div
+        v-if="isContactOpen"
+        class="contact-modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 backdrop-blur-[2px]"
+        @click="closeContact"
+      >
+        <div class="contact-modal-panel relative w-full max-w-md" @click.stop>
+          <button
+            type="button"
+            class="absolute -right-2 -top-2 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition"
+            aria-label="Close"
+            @click="closeContact"
+          >
+            ×
+          </button>
+          <ContactCard />
+        </div>
+      </div>
+    </Transition>
+
+    <Transition name="resume-modal" appear>
+      <div
+        v-if="isResumeOpen"
+        class="fixed inset-0 z-[110] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-[2px]"
+        @click="closeResume"
+      >
+        <div
+          class="relative w-full max-w-5xl rounded-2xl border border-white/15 bg-[#0b1220]/95 p-4 shadow-2xl shadow-cyan-900/20"
+          @click.stop
+        >
+          <button
+            type="button"
+            class="absolute cursor-pointer right-3 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition"
+            aria-label="Close resume"
+            @click="closeResume"
+          >
+            ×
+          </button>
+
+          <iframe src="/taha_cv_tr.pdf" title="Taha CV" class="h-[72vh] w-full rounded-xl bg-white"></iframe>
+
+          <div class="mt-4 flex justify-end gap-3">
+            <a
+              href="/taha_cv_tr.pdf"
+              target="_blank"
+              rel="noreferrer"
+              class="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white"
+            >
+              New Tab
+            </a>
+            <a
+              href="/taha_cv_tr.pdf"
+              download
+              class="rounded-xl bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-900"
+            >
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style scoped>
 .project-tile {
-  transform: translateY(0);
-  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  transform:
+    perspective(1200px)
+    rotateX(var(--tile-rotate-x, 0deg))
+    rotateY(var(--tile-rotate-y, 0deg))
+    translateY(0);
+  box-shadow: 0 18px 42px rgba(3, 7, 18, 0.2);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .project-tile:hover {
-  transform: translateY(-4px);
+  transform:
+    perspective(1200px)
+    rotateX(var(--tile-rotate-x, 0deg))
+    rotateY(var(--tile-rotate-y, 0deg))
+    translateY(-4px);
   border-color: rgba(103, 232, 249, 0.35);
   background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 28px 64px rgba(8, 145, 178, 0.18);
+}
+
+.contact-modal-enter-active,
+.contact-modal-leave-active {
+  transition: opacity 260ms ease;
+}
+
+.contact-modal-enter-active .contact-modal-panel,
+.contact-modal-leave-active .contact-modal-panel {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
+}
+
+.contact-modal-enter-from,
+.contact-modal-leave-to {
+  opacity: 0;
+}
+
+.contact-modal-enter-from .contact-modal-panel,
+.contact-modal-leave-to .contact-modal-panel {
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+}
+
+.resume-modal-enter-active,
+.resume-modal-leave-active {
+  transition: opacity 260ms ease;
+}
+
+.resume-modal-enter-active > div,
+.resume-modal-leave-active > div {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
+}
+
+.resume-modal-enter-from,
+.resume-modal-leave-to {
+  opacity: 0;
+}
+
+.resume-modal-enter-from > div,
+.resume-modal-leave-to > div {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
 }
 </style>
