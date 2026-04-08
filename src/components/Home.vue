@@ -122,9 +122,11 @@ function resetContactCard(event) {
 
     <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur">
       <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" class="text-lg font-semibold tracking-tight">Taha Kirmizioglu</a>
+        <RouterLink to="/" class="text-lg font-semibold tracking-tight">Taha Kirmizioglu</RouterLink>
         <ul class="flex items-center gap-6 text-sm text-white/80">
-          <li><a href="#projects" class="cursor-pointer transition hover:text-white">Projects</a></li>
+          <li>
+            <RouterLink to="/projects" class="cursor-pointer transition hover:text-white">Projects</RouterLink>
+          </li>
           <li>
             <button type="button" class="cursor-pointer transition hover:text-white" @click="openResume">
               Cv
