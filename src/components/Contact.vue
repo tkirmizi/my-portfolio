@@ -4,8 +4,8 @@
   >
     <div class="text-center">
       <img
-        class="mx-auto h-24 w-24 rounded-full border-2 border-cyan-300/40 object-cover"
-        src="/favicon.svg"
+        class="mx-auto h-24 w-24 rounded-full border-2 border-cyan-300/40 object-fill"
+        src="../assets/vesika.png"
         alt="Profile avatar"
       />
       <h3 class="mt-4 text-2xl font-bold tracking-tight">Taha Kirmizioglu</h3>
@@ -21,7 +21,7 @@
         rel="noreferrer"
         class="rounded-full bg-cyan-300 px-4 py-2 text-center text-sm font-semibold text-slate-900 transition"
       >
-        GitHub
+        Github
       </a>
       <a
         href="https://www.linkedin.com/in/taha-k%C4%B1rm%C4%B1z%C4%B1o%C4%9Flu-31429215a/"

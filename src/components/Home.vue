@@ -3,10 +3,11 @@ import ProjectCard from './ProjectCard.vue';
 import irc from "../assets/irc.jpg"
 import minishell from "../assets/minishell.png"
 import trans from "../assets/trans.png"
-import About from './About.vue';
+import About from './Contact.vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const isAboutOpen = ref(false)
+const isResumeOpen = ref(false)
 
 function openAbout() {
   isAboutOpen.value = true
@@ -16,9 +17,19 @@ function closeAbout() {
   isAboutOpen.value = false
 }
 
+function openResume(){
+  isResumeOpen.value = true
+}
+
+function closeResume(){
+  isResumeOpen.value = false
+}
+
 function onKeyDown(event) {
-  if (event.key === 'Escape')
+  if (event.key === 'Escape'){
     closeAbout()
+    closeResume()
+  }
 }
 
 onMounted(() => window.addEventListener('keydown', onKeyDown))
@@ -109,15 +120,18 @@ function resetContactCard(event) {
   <div class="min-h-screen flex flex-col bg-ink text-white">
     <div class="pointer-events-none fixed inset-0 -z-10 bg-mesh"></div>
 
-    <!-- Navbar -->
     <header class="sticky top-0 z-50 border-b border-white/10 bg-ink/70 backdrop-blur">
       <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" class="text-lg font-semibold tracking-tight">Taha Kirmizioglu</a>
         <ul class="flex items-center gap-6 text-sm text-white/80">
-          <li><a href="#projects" class="hover:text-white">Projects</a></li>
-          <li><a href="#about" class="hover:text-white">About Me</a></li>
+          <li><a href="#projects" class="cursor-pointer transition hover:text-white">Projects</a></li>
           <li>
-            <button type="button" class="hover:bg-cyan-200 bg-cyan-300 text-sm rounded-xl p-1 text-slate-900 font-semibold" @click="openAbout">
+            <button type="button" class="cursor-pointer transition hover:text-white" @click="openResume">
+              Cv
+            </button>
+          </li>
+          <li>
+            <button type="button" class="cursor-pointer rounded-xl bg-cyan-300 p-1 text-sm font-semibold text-slate-900 transition hover:bg-cyan-200" @click="openAbout">
               Contact
             </button>
           </li>
@@ -127,7 +141,6 @@ function resetContactCard(event) {
     </header>
 
     <main class="flex-1">
-      <!-- Hero -->
       <section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-8">
         <div class="card p-6 md:p-8">
           <h1 class="text-4xl md:text-6xl font-bold leading-tight">
@@ -235,6 +248,52 @@ function resetContactCard(event) {
         </div>
       </Transition>
 
+      <Transition name="resume-modal" appear>
+        <div
+          v-if="isResumeOpen"
+          class="fixed inset-0 z-[110] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-[2px]"
+          @click="closeResume"
+        >
+          <div
+            class="relative w-full max-w-5xl rounded-2xl border border-white/15 bg-[#0b1220]/95 p-4 shadow-2xl shadow-cyan-900/20"
+            @click.stop
+          >
+            <button
+              type="button"
+              class="absolute cursor-pointer right-3 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full border border-red-300/40 bg-red-500/90 text-white shadow-lg transition"
+              aria-label="Close resume"
+              @click="closeResume"
+            >
+              ×
+            </button>
+
+            <iframe
+              src="/cv.pdf"
+              title="Taha CV"
+              class="h-[72vh] w-full rounded-xl bg-white"
+            ></iframe>
+
+            <div class="mt-4 flex justify-end gap-3">
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white"
+              >
+                New Tab
+              </a>
+              <a
+                href="/cv.pdf"
+                download
+                class="rounded-xl bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-900"
+              >
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </Transition>
+
     </main>
 
     <!-- Footer -->
@@ -286,5 +345,26 @@ function resetContactCard(event) {
 .contact-modal-leave-from .contact-modal-panel {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+.resume-modal-enter-active,
+.resume-modal-leave-active {
+  transition: opacity 260ms ease;
+}
+
+.resume-modal-enter-active > div,
+.resume-modal-leave-active > div {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
+}
+
+.resume-modal-enter-from,
+.resume-modal-leave-to {
+  opacity: 0;
+}
+
+.resume-modal-enter-from > div,
+.resume-modal-leave-to > div {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
 }
 </style>

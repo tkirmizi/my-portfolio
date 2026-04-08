@@ -1,8 +1,8 @@
 <template>
-  <Deneme />
+  <Home />
 </template>
 
 
 <script setup>
-import Deneme from './components/Home.vue'
+import Home from './components/Home.vue'
 </script>
