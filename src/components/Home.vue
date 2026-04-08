@@ -268,14 +268,14 @@ function resetContactCard(event) {
             </button>
 
             <iframe
-              src="/cv.pdf"
+              src="/taha_cv_tr.pdf"
               title="Taha CV"
               class="h-[72vh] w-full rounded-xl bg-white"
             ></iframe>
 
             <div class="mt-4 flex justify-end gap-3">
               <a
-                href="/cv.pdf"
+                href="/taha_cv_tr.pdf"
                 target="_blank"
                 rel="noreferrer"
                 class="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white"
@@ -283,7 +283,7 @@ function resetContactCard(event) {
                 New Tab
               </a>
               <a
-                href="/cv.pdf"
+                href="/taha_cv_tr.pdf"
                 download
                 class="rounded-xl bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-900"
               >
