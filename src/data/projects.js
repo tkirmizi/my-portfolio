@@ -4,9 +4,9 @@ export const projects = [
     title: 'Transcendence',
     description:
       'A fullstack social platform project with authentication, game and chat flows, and real-time interactions. This is one of the projects I am most proud of.',
-    image: 'https://opengraph.githubassets.com/1/agdemirayhan/ft_transcendence',
+    image: 'https://opengraph.githubassets.com/1/tkirmizi/ft_transcendence',
     year: '2026',
-    repoUrl: 'https://github.com/agdemirayhan/ft_transcendence',
+    repoUrl: 'https://github.com/tkirmizi/ft_transcendence',
     tags: ['Fullstack', 'Real-time', 'Web'],
   },
   {
