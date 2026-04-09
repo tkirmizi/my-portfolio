@@ -10,8 +10,8 @@
       />
       <h3 class="mt-4 text-2xl font-bold tracking-tight">Taha Kirmizioglu</h3>
       <p class="mt-1 text-sm text-white/65">Heilbronn, Germany</p>
-      <p class="mt-1 test-sm text-white/65">t.kirmizioglu@outlook.com</p>
-      <p class="mt-1 test-sm text-white/65">+491729391054</p>
+      <p class="mt-1 text-sm text-white/65">t.kirmizioglu@outlook.com</p>
+      <p class="mt-1 text-sm text-white/65">+491729391054</p>
     </div>
 
     <div class="mt-6 grid grid-cols-3 gap-3">

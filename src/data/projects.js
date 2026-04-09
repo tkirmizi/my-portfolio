@@ -1,113 +1,113 @@
-import transcendenceImage from '../assets/projects/transcendence.svg'
-import ftIrcImage from '../assets/projects/ft-irc.svg'
-import minishellImage from '../assets/projects/minishell.svg'
-import cub3dImage from '../assets/projects/cub3d.svg'
-import getNextLineImage from '../assets/projects/get-next-line.svg'
-import cppModulesImage from '../assets/projects/cpp-modules.svg'
-import inceptionImage from '../assets/projects/inception.svg'
-import philosophersImage from '../assets/projects/philosophers.svg'
-import pipexImage from '../assets/projects/pipex.svg'
-import soLongImage from '../assets/projects/so-long.svg'
+import transcendenceCover from '../assets/projects/transcendence.svg'
+import ftIrcCover from '../assets/projects/ft-irc.svg'
+import minishellCover from '../assets/projects/minishell.svg'
+import cub3dCover from '../assets/projects/cub3d.svg'
+import getNextLineCover from '../assets/projects/get-next-line.svg'
+import cppModulesCover from '../assets/projects/cpp-modules.svg'
+import inceptionCover from '../assets/projects/inception.svg'
+import philosophersCover from '../assets/projects/philosophers.svg'
+import pipexCover from '../assets/projects/pipex.svg'
+import soLongCover from '../assets/projects/so-long.svg'
 
-export const projects = [
+export const PROJECTS = [
   {
-    id: 'transcendence',
+    slug: 'transcendence',
     title: 'Transcendence',
-    description:
+    year: 2026,
+    cover: transcendenceCover,
+    summary:
       'A fullstack social platform project with authentication, game and chat flows, and real-time interactions. This is one of the projects I am most proud of.',
-    image: transcendenceImage,
-    year: '2026',
-    repoUrl: 'https://github.com/tkirmizi/ft_transcendence',
-    tags: ['Fullstack', 'Real-time', 'Web'],
+    repositoryUrl: 'https://github.com/tkirmizi/ft_transcendence',
+    technologies: ['Fullstack', 'Realtime', 'Web'],
   },
   {
-    id: 'ft-irc',
+    slug: 'ft-irc',
     title: 'ft_irc',
-    description:
+    year: 2026,
+    cover: ftIrcCover,
+    summary:
       'A custom IRC server where I focused on sockets, command parsing, and client/channel behavior. It was my hands-on deep dive into real-time network programming.',
-    image: ftIrcImage,
-    year: '2026',
-    repoUrl: 'https://github.com/tkirmizi/ft_irc',
-    tags: ['C++', 'Networking', 'Sockets'],
+    repositoryUrl: 'https://github.com/tkirmizi/ft_irc',
+    technologies: ['C++', 'Networking', 'Sockets'],
   },
   {
-    id: 'minishell',
+    slug: 'minishell',
     title: 'Minishell',
-    description:
+    year: 2024,
+    cover: minishellCover,
+    summary:
       'A Unix-like shell where I implemented parsing, pipes, redirections, and process management. It gave me strong low-level confidence with systems programming.',
-    image: minishellImage,
-    year: '2024',
-    repoUrl: 'https://github.com/tkirmizi/Unix-shell',
-    tags: ['C', 'Unix', 'Processes'],
+    repositoryUrl: 'https://github.com/tkirmizi/Unix-shell',
+    technologies: ['C', 'Unix', 'Processes'],
   },
   {
-    id: 'cub3d',
+    slug: 'cub3d',
     title: 'Cub3D',
-    description:
+    year: 2025,
+    cover: cub3dCover,
+    summary:
       'A raycasting-based 3D project inspired by early FPS engines. I worked heavily on rendering math, map parsing, and smooth controls.',
-    image: cub3dImage,
-    year: '2025',
-    repoUrl: 'https://github.com/tkirmizi/Cub3D',
-    tags: ['C', 'Graphics', 'Game'],
+    repositoryUrl: 'https://github.com/tkirmizi/Cub3D',
+    technologies: ['C', 'Graphics', 'Game'],
   },
   {
-    id: 'get-next-line',
+    slug: 'get-next-line',
     title: 'Get-Next-Line',
-    description:
+    year: 2024,
+    cover: getNextLineCover,
+    summary:
       'A utility function that reads a file descriptor line by line with careful memory handling. It was a great exercise in clean buffer logic.',
-    image: getNextLineImage,
-    year: '2024',
-    repoUrl: 'https://github.com/tkirmizi/Get-Next-Line',
-    tags: ['C', 'File I/O', 'Memory'],
+    repositoryUrl: 'https://github.com/tkirmizi/Get-Next-Line',
+    technologies: ['C', 'File I/O', 'Memory'],
   },
   {
-    id: 'cpp-modules',
+    slug: 'cpp-modules',
     title: 'CPP-Modules',
-    description:
+    year: 2025,
+    cover: cppModulesCover,
+    summary:
       'This repository collects my C++ module journey and exercises in one place. I used it to sharpen OOP basics, memory management, and STL habits.',
-    image: cppModulesImage,
-    year: '2025',
-    repoUrl: 'https://github.com/tkirmizi/CPP-Modules',
-    tags: ['C++', 'OOP', 'STL'],
+    repositoryUrl: 'https://github.com/tkirmizi/CPP-Modules',
+    technologies: ['C++', 'OOP', 'STL'],
   },
   {
-    id: 'inception',
+    slug: 'inception',
     title: 'Inception',
-    description:
+    year: 2025,
+    cover: inceptionCover,
+    summary:
       'A Docker-based infrastructure setup where services are isolated and orchestrated together. It taught me how to think in terms of deployment, not just code.',
-    image: inceptionImage,
-    year: '2025',
-    repoUrl: 'https://github.com/tkirmizi/Inception',
-    tags: ['Docker', 'DevOps', 'Infra'],
+    repositoryUrl: 'https://github.com/tkirmizi/Inception',
+    technologies: ['Docker', 'DevOps', 'Infra'],
   },
   {
-    id: 'philosophers',
+    slug: 'philosophers',
     title: 'Philosophers',
-    description:
+    year: 2024,
+    cover: philosophersCover,
+    summary:
       'A concurrency simulation that forced me to manage timing and shared state carefully. I spent most of the effort preventing race conditions and deadlocks.',
-    image: philosophersImage,
-    year: '2024',
-    repoUrl: 'https://github.com/tkirmizi/Philosophers',
-    tags: ['C', 'Threads', 'Synchronization'],
+    repositoryUrl: 'https://github.com/tkirmizi/Philosophers',
+    technologies: ['C', 'Threads', 'Synchronization'],
   },
   {
-    id: 'pipex',
+    slug: 'pipex',
     title: 'Pipex',
-    description:
+    year: 2024,
+    cover: pipexCover,
+    summary:
       'This project recreates shell-like piping behavior at a lower level. It was a strong exercise in file descriptors, process chaining, and error handling.',
-    image: pipexImage,
-    year: '2024',
-    repoUrl: 'https://github.com/tkirmizi/Pipex',
-    tags: ['C', 'Pipes', 'Unix'],
+    repositoryUrl: 'https://github.com/tkirmizi/Pipex',
+    technologies: ['C', 'Pipes', 'Unix'],
   },
   {
-    id: 'so-long',
+    slug: 'so-long',
     title: 'so_long',
-    description:
+    year: 2024,
+    cover: soLongCover,
+    summary:
       'A small 2D game project with map parsing, movement logic, and simple rendering. It helped me connect algorithmic thinking with visual feedback.',
-    image: soLongImage,
-    year: '2024',
-    repoUrl: 'https://github.com/tkirmizi/so_long',
-    tags: ['C', 'Game', 'Graphics'],
+    repositoryUrl: 'https://github.com/tkirmizi/so_long',
+    technologies: ['C', 'Game', 'Graphics'],
   },
 ]
