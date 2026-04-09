@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#130608"/>
+      <stop offset="100%" stop-color="#48111b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g transform="translate(272 190)">
+    <rect width="736" height="360" rx="16" fill="none" stroke="#ff6d84" stroke-width="3" opacity="0.85"/>
+    <g fill="#ffd7de" opacity="0.9">
+      <rect x="40" y="40" width="52" height="52" rx="8"/>
+      <rect x="120" y="40" width="52" height="52" rx="8"/>
+      <rect x="200" y="40" width="52" height="52" rx="8"/>
+      <rect x="280" y="40" width="52" height="52" rx="8"/>
+      <rect x="360" y="40" width="52" height="52" rx="8"/>
+      <rect x="440" y="40" width="52" height="52" rx="8"/>
+      <rect x="520" y="40" width="52" height="52" rx="8"/>
+      <rect x="600" y="40" width="52" height="52" rx="8"/>
+    </g>
+    <circle cx="146" cy="220" r="22" fill="#ff8d6b"/>
+    <rect x="560" y="190" width="42" height="62" rx="6" fill="#ff5f7d"/>
+    <text x="40" y="322" fill="#ffb5c0" font-size="22" font-family="monospace">C = collectible, P = player, E = exit</text>
+  </g>
+  <text x="86" y="104" fill="#ffe9ed" font-size="66" font-family="Space Grotesk, Arial, sans-serif" font-weight="700">so_long</text>
+  <text x="88" y="148" fill="#ff9faf" font-size="24" font-family="Space Grotesk, Arial, sans-serif">2D Map · Sprites · Movement Logic</text>
+</svg>

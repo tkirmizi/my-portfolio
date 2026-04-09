@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#130608"/>
+      <stop offset="100%" stop-color="#3b0b12"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff4d6d"/>
+      <stop offset="100%" stop-color="#ff8a65"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g stroke="url(#line)" stroke-width="2" fill="none" opacity="0.9">
+    <polygon points="140,640 1140,640 920,420 360,420"/>
+    <polygon points="220,560 1060,560 875,390 405,390"/>
+    <polygon points="300,490 980,490 830,360 450,360"/>
+    <polygon points="380,430 900,430 785,330 495,330"/>
+    <line x1="640" y1="640" x2="640" y2="330"/>
+    <line x1="140" y1="640" x2="495" y2="330"/>
+    <line x1="1140" y1="640" x2="785" y2="330"/>
+  </g>
+  <text x="84" y="104" fill="#ffd7dd" font-size="66" font-family="Space Grotesk, Arial, sans-serif" font-weight="700">Cub3D</text>
+  <text x="86" y="150" fill="#ff9aa9" font-size="24" font-family="Space Grotesk, Arial, sans-serif">Raycasting · Textures · Game Loop</text>
+</svg>

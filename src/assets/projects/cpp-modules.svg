@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16070a"/>
+      <stop offset="100%" stop-color="#441019"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="#ffd4da" opacity="0.88" font-family="monospace" font-size="28">
+    <text x="96" y="232">class Character { public: virtual ~Character() {} };</text>
+    <text x="96" y="286">template&lt;typename T&gt; T clamp(T v, T lo, T hi) { ... }</text>
+    <text x="96" y="340">std::vector&lt;std::string&gt; modules = {"CPP02", "CPP03", ...};</text>
+    <text x="96" y="394">for (auto &amp;m : modules) std::cout &lt;&lt; m &lt;&lt; "\n";</text>
+  </g>
+  <g stroke="#ff5f7d" stroke-width="2" opacity="0.75">
+    <rect x="80" y="180" width="1120" height="250" rx="18" fill="none"/>
+    <rect x="80" y="450" width="420" height="180" rx="18" fill="none"/>
+    <rect x="520" y="450" width="680" height="180" rx="18" fill="none"/>
+  </g>
+  <text x="88" y="104" fill="#ffe4e8" font-size="64" font-family="Space Grotesk, Arial, sans-serif" font-weight="700">CPP-Modules</text>
+  <text x="90" y="148" fill="#ff9eac" font-size="24" font-family="Space Grotesk, Arial, sans-serif">OOP · Templates · STL · Canonical Form</text>
+</svg>

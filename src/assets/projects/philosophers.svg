@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#130609"/>
+      <stop offset="100%" stop-color="#47111b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="640" cy="400" r="160" fill="none" stroke="#ff6c84" stroke-width="3" opacity="0.9"/>
+  <g fill="#ffd9df" opacity="0.9">
+    <circle cx="640" cy="220" r="34"/>
+    <circle cx="813" cy="307" r="34"/>
+    <circle cx="747" cy="498" r="34"/>
+    <circle cx="533" cy="498" r="34"/>
+    <circle cx="467" cy="307" r="34"/>
+  </g>
+  <g stroke="#ff8d6b" stroke-width="6" stroke-linecap="round" opacity="0.85">
+    <line x1="640" y1="264" x2="640" y2="318"/>
+    <line x1="777" y1="334" x2="724" y2="360"/>
+    <line x1="724" y1="463" x2="687" y2="418"/>
+    <line x1="556" y1="463" x2="593" y2="418"/>
+    <line x1="503" y1="334" x2="556" y2="360"/>
+  </g>
+  <text x="86" y="104" fill="#ffe8ec" font-size="66" font-family="Space Grotesk, Arial, sans-serif" font-weight="700">Philosophers</text>
+  <text x="88" y="148" fill="#ff9faf" font-size="24" font-family="Space Grotesk, Arial, sans-serif">Threads · Mutex · Deadlock Control</text>
+</svg>

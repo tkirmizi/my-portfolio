@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15070a"/>
+      <stop offset="100%" stop-color="#4a111c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#ff6e85" stroke-width="3" opacity="0.9">
+    <rect x="120" y="280" width="250" height="110" rx="14"/>
+    <rect x="510" y="280" width="260" height="110" rx="14"/>
+    <rect x="910" y="280" width="250" height="110" rx="14"/>
+    <line x1="370" y1="334" x2="510" y2="334"/>
+    <line x1="770" y1="334" x2="910" y2="334"/>
+    <polygon points="498,334 480,324 480,344" fill="#ff6e85"/>
+    <polygon points="898,334 880,324 880,344" fill="#ff6e85"/>
+  </g>
+  <g fill="#ffd7de" font-family="monospace" font-size="24" opacity="0.92">
+    <text x="170" y="345">infile</text>
+    <text x="568" y="345">cmd1 | cmd2</text>
+    <text x="975" y="345">outfile</text>
+  </g>
+  <text x="84" y="104" fill="#ffe9ed" font-size="66" font-family="Space Grotesk, Arial, sans-serif" font-weight="700">Pipex</text>
+  <text x="86" y="148" fill="#ff9dad" font-size="24" font-family="Space Grotesk, Arial, sans-serif">Fork · Dup2 · Pipe Chain · Execve</text>
+</svg>
